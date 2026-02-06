@@ -1,0 +1,14 @@
+version: 1.0
+runtime: nodejs18
+build:
+  commands:
+    build:
+      - npm install
+      - npm run build
+  secrets:
+    NODE_ENV: NODE_ENV
+run:
+  runtime-version: 18
+  command: npm install -g serve && serve -s dist -l 3000
+  network:
+    port: 3000
