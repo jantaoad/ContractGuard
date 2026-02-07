@@ -1,5 +1,4 @@
-﻿import React from 'react';
-import { ErrorBoundary } from '@/components/ErrorBoundary';
+﻿import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { AuthPage } from '@/pages/AuthPage';
 import './index.css';
 

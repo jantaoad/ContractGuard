@@ -7,22 +7,26 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint src --ext ts,tsx"
+    "lint": "eslint src --ext ts,tsx",
+    "deploy:s3": "powershell -ExecutionPolicy Bypass -File ./deploy-to-s3.ps1",
+    "deploy:apprunner": "powershell -ExecutionPolicy Bypass -File ./deploy-to-apprunner.ps1",
+    "build:prod": "tsc && vite build --mode production"
   },
   "dependencies": {
+    "lucide-react": "^0.371.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "lucide-react": "^0.371.0",
-    "recharts": "^2.10.3"
+    "recharts": "^2.10.3",
+    "terser": "^5.46.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@vitejs/plugin-react": "^4.1.1",
-    "typescript": "^5.2.2",
-    "vite": "^5.0.2",
-    "tailwindcss": "^3.3.6",
     "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.31"
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.6",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.2"
   }
 }

@@ -51,6 +51,9 @@ def create_app() -> FastAPI:
             "http://localhost:3000",
             "http://localhost:5173",
             "https://contractguard.app",
+            "http://contractguard-app-prod.s3-website-us-east-1.amazonaws.com",
+            "https://contractguard-app-prod.s3.amazonaws.com",
+            "https://p22dbd8vui.us-east-2.awsapprunner.com",
         ],
         allow_credentials=True,
         allow_methods=["*"],
@@ -60,7 +63,13 @@ def create_app() -> FastAPI:
     # Trusted Host Middleware
     app.add_middleware(
         TrustedHostMiddleware,
-        allowed_hosts=["localhost", "*.contractguard.app"],
+        allowed_hosts=[
+            "localhost",
+            "*.contractguard.app",
+            "contractguard-app-prod.s3-website-us-east-1.amazonaws.com",
+            "contractguard-app-prod.s3.amazonaws.com",
+            "p22dbd8vui.us-east-2.awsapprunner.com",
+        ],
     )
 
     # Health Check Endpoint

@@ -1,3 +1,22 @@
+# Multi-stage Dockerfile to build React frontend and serve with nginx on port 8080
+
+# 1) Builder: install deps and build
+FROM node:18-alpine AS builder
+WORKDIR /app
+COPY package.json package-lock.json* ./
+RUN npm ci --silent
+COPY . ./
+RUN npm run build
+
+# 2) Server: serve static files with nginx
+FROM nginx:stable-alpine
+COPY --from=builder /app/dist /usr/share/nginx/html
+
+# Configure nginx to listen on 8080 (App Runner expects a single listening port)
+RUN sed -i 's/listen       80;/listen       8080;/' /etc/nginx/conf.d/default.conf
+
+EXPOSE 8080
+CMD ["nginx", "-g", "daemon off;"]
 # Multi-stage build for ContractGuard FastAPI backend
 
 # Stage 1: Builder
